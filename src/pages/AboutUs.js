@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
-import { defaultTypographySx } from "../styles/defaultStyles";
+import { useDefaultTypographySx } from "../styles/defaultStyles";
 
 const AboutUs = () => {
+  const defaultTypographySx = useDefaultTypographySx;
   return (
     <Box>
       <Typography variant="h1" sx={defaultTypographySx}>

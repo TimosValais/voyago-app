@@ -2,9 +2,9 @@ import React from "react";
 import { Button, Typography } from "@mui/material";
 import {
   defaultButtonProps,
-  defaultButtonSx,
+  useDefaultButtonSx,
   defaultTypographyProps,
-  defaultTypographySx,
+  useDefaultTypographySx,
 } from "../styles/defaultStyles";
 
 const AppButton = ({
@@ -16,19 +16,22 @@ const AppButton = ({
   typographyProps = {},
   typographySx = {},
 }) => {
+  const defaultButtonSx = useDefaultButtonSx();
+  const defaultTypographySx = useDefaultTypographySx();
+
   return (
     <Button
       variant={variant ?? defaultButtonProps.variant}
       color={color ?? defaultButtonProps.color}
       onClick={onClick}
-      sx={Object.assign({}, defaultButtonSx, sx)}
+      sx={{ ...defaultButtonSx, ...sx }}
     >
       <Typography
         variant={typographyProps.variant ?? defaultTypographyProps.variant}
         component={
           typographyProps.component ?? defaultTypographyProps.component
         }
-        sx={Object.assign({}, defaultTypographySx, typographySx)}
+        sx={{ ...defaultTypographySx, ...typographySx }}
       >
         {text}
       </Typography>

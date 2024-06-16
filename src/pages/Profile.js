@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { defaultTypographySx } from "../styles/defaultStyles";
 import AppButton from "../components/AppButton";
+import { useDefaultTypographySx } from "../styles/defaultStyles";
 
 const Profile = ({ username, onLogout }) => {
+  const defaultTypographySx = useDefaultTypographySx();
   return (
     <>
       <Box>
