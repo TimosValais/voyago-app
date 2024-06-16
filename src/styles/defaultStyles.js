@@ -17,12 +17,13 @@ const defaultTypographyProps = {
 };
 
 const defaultTypographySx = {
-  color: "inherit",
+  color: "text.primary", // Default to text.primary from the theme
 };
 
 const defaultIconSx = {
   width: { xs: 20, sm: 25, md: 30 },
   height: { xs: 20, sm: 25, md: 30 },
+  color: "text.primary", // Default to text.primary from the theme
 };
 
 export {

@@ -1,13 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { IoLogIn } from "react-icons/io5";
+import { IoCar, IoDiamond, IoLogIn } from "react-icons/io5";
 import logo from "../images/logos/logo.png";
 import { Box } from "@mui/material";
 import navStyles from "../styles/navbarStyles";
 import AppButton from "./AppButton";
 import AppIcon from "./AppIcon";
 
-const Navbar = () => {
+const Navbar = ({ toggleDarkMode, authToken, onLogout, username }) => {
+  console.log(username);
   return (
     <Box sx={navStyles.container} className="nav container" id="nav-menu">
       <Box sx={navStyles.leftMenu} className="left menu">
@@ -34,9 +35,8 @@ const Navbar = () => {
               margin: "0 10px",
               textDecoration: "none",
             }}
-            typographyProps={{
-              variant: "body1",
-              component: "span",
+            typographySx={{
+              color: "text.primary",
             }}
           />
         </NavLink>
@@ -51,49 +51,106 @@ const Navbar = () => {
               margin: "0 10px",
               textDecoration: "none",
             }}
-            typographyProps={{
-              variant: "body1",
-              component: "span",
+            typographySx={{
+              color: "text.primary",
             }}
           />
         </NavLink>
-        <NavLink to="/trips" className="nav__link">
-          <AppButton
-            text="Trips"
-            variant="text"
-            color="primary"
-            sx={{
-              fontSize: { xs: "0.8rem", sm: "1rem" },
-              padding: { xs: "8px", sm: "12px" },
-              margin: "0 10px",
-              textDecoration: "none",
-            }}
-            typographyProps={{
-              variant: "body1",
-              component: "span",
-            }}
-          />
-        </NavLink>
+        {authToken && (
+          <>
+            <NavLink to="/trips" className="nav__link">
+              <AppButton
+                text="Trips"
+                variant="text"
+                color="primary"
+                sx={{
+                  fontSize: { xs: "0.8rem", sm: "1rem" },
+                  padding: { xs: "8px", sm: "12px" },
+                  margin: "0 10px",
+                  textDecoration: "none",
+                }}
+                typographySx={{
+                  color: "text.primary",
+                }}
+              />
+            </NavLink>
+            <NavLink to="/profile" className="nav__link">
+              <AppButton
+                text="Profile"
+                variant="text"
+                color="primary"
+                sx={{
+                  fontSize: { xs: "0.8rem", sm: "1rem" },
+                  padding: { xs: "8px", sm: "12px" },
+                  margin: "0 10px",
+                  textDecoration: "none",
+                }}
+                typographySx={{
+                  color: "text.primary",
+                }}
+              />
+            </NavLink>
+          </>
+        )}
       </Box>
 
       <Box sx={navStyles.rightMenu} className="right menu">
-        <NavLink to="/login" className="nav__link">
-          <AppButton
-            text={<AppIcon IconComponent={IoLogIn} />}
-            variant="text"
-            color="primary"
-            sx={{
-              fontSize: { xs: "0.8rem", sm: "1rem" },
-              padding: { xs: "8px", sm: "12px" },
-              margin: "0 10px",
-              textDecoration: "none",
-            }}
-            typographyProps={{
-              variant: "body1",
-              component: "span",
-            }}
-          />
-        </NavLink>
+        <AppButton
+          text={<AppIcon IconComponent={IoDiamond} />}
+          variant="text"
+          color="primary"
+          onClick={toggleDarkMode}
+          sx={{
+            fontSize: { xs: "0.8rem", sm: "1rem" },
+            padding: { xs: "8px", sm: "12px" },
+            margin: "0 10px",
+            textDecoration: "none",
+          }}
+          typographySx={{
+            color: "text.primary",
+          }}
+        />
+        {authToken ? (
+          <>
+            <NavLink
+              to="/profile"
+              className="nav__link"
+              style={{ textDecoration: "none", margin: "0 10px" }}
+            >
+              <AppButton
+                text={<AppIcon IconComponent={IoCar} />}
+                variant="text"
+                color="primary"
+                sx={{
+                  fontSize: { xs: "0.8rem", sm: "1rem" },
+                  padding: { xs: "8px", sm: "12px" },
+                  margin: "0 10px",
+                  textDecoration: "none",
+                }}
+                typographySx={{
+                  color: "text.primary",
+                }}
+              />
+            </NavLink>
+          </>
+        ) : (
+          <NavLink to="/login" className="nav__link">
+            <AppButton
+              text={<AppIcon IconComponent={IoLogIn} />}
+              variant="text"
+              color="primary"
+              sx={{
+                fontSize: { xs: "0.8rem", sm: "1rem" },
+                padding: { xs: "8px", sm: "12px" },
+                margin: "0 10px",
+                textDecoration: "none",
+              }}
+              typographySx={{
+                color: "text.primary",
+              }}
+            />
+          </NavLink>
+        )}
       </Box>
     </Box>
   );
