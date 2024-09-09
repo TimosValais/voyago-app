@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { IoCar, IoDiamond, IoLogIn } from "react-icons/io5";
+import { IoPersonCircle, IoMoonSharp, IoLogIn } from "react-icons/io5";
 import logo from "../images/logos/logo.png";
 import { Box } from "@mui/material";
 import navStyles from "../styles/navbarStyles";
@@ -8,8 +8,9 @@ import AppButton from "./AppButton";
 import AppIcon from "./AppIcon";
 import { useDefaultTypographySx } from "../styles/defaultStyles";
 
-const Navbar = ({ toggleDarkMode, authToken, onLogout, username }) => {
+const Navbar = ({ toggleDarkMode, onLogout }) => {
   const defaultTypographySx = useDefaultTypographySx();
+  const authToken = localStorage.getItem("authToken");
 
   return (
     <Box sx={navStyles.container} className="nav container" id="nav-menu">
@@ -22,15 +23,17 @@ const Navbar = ({ toggleDarkMode, authToken, onLogout, username }) => {
             sx={navStyles.navIcon}
           />
         </NavLink>
-        <NavLink to="/" className="nav__link">
-          <AppButton
-            text="Home"
-            variant="text"
-            color="primary"
-            sx={navStyles.navButton}
-            typographySx={defaultTypographySx}
-          />
-        </NavLink>
+        {authToken && (
+          <NavLink to="/" className="nav__link">
+            <AppButton
+              text="Home"
+              variant="text"
+              color="primary"
+              sx={navStyles.navButton}
+              typographySx={defaultTypographySx}
+            />
+          </NavLink>
+        )}
         <NavLink to="/about-us" className="nav__link">
           <AppButton
             text="About Us"
@@ -66,7 +69,7 @@ const Navbar = ({ toggleDarkMode, authToken, onLogout, username }) => {
 
       <Box sx={navStyles.rightMenu} className="right menu">
         <AppButton
-          text={<AppIcon IconComponent={IoDiamond} />}
+          text={<AppIcon IconComponent={IoMoonSharp} />}
           variant="text"
           color="primary"
           onClick={toggleDarkMode}
@@ -81,7 +84,7 @@ const Navbar = ({ toggleDarkMode, authToken, onLogout, username }) => {
               style={{ textDecoration: "none" }}
             >
               <AppButton
-                text={<AppIcon IconComponent={IoCar} />}
+                text={<AppIcon IconComponent={IoPersonCircle} />}
                 variant="text"
                 color="primary"
                 sx={navStyles.navButton}

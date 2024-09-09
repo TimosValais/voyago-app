@@ -1,16 +1,29 @@
 import React, { useState } from "react";
 import { Box, Typography, Link, Paper } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AppButton from "../components/AppButton";
 import AppTextField from "../components/AppTextField";
+import { registerUser } from "../api/authService";
 
-const Register = ({ onRegister, authError }) => {
+const Register = () => {
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleRegister = (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
-    onRegister(username, password);
+    try {
+      await registerUser(username, email, password);
+      setAuthError(null);
+      navigate("/login");
+    } catch (error) {
+      setAuthError(
+        error?.response?.data?.message ??
+          "Registration failed. Please try again."
+      );
+    }
   };
 
   return (
@@ -40,6 +53,15 @@ const Register = ({ onRegister, authError }) => {
             onChange={(e) => setUsername(e.target.value)}
           />
           <AppTextField
+            id="email"
+            label="Email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <AppTextField
             id="password"
             label="Password"
             name="password"
@@ -57,8 +79,9 @@ const Register = ({ onRegister, authError }) => {
             type="submit"
             text="Register"
             variant="contained"
-            color="primary"
+            color="buttons.accept"
             sx={{ mt: 3, mb: 2, width: "100%" }}
+            typographySx={{ color: "buttonsText.accept" }}
             onClick={handleRegister}
           />
           <Typography variant="body2" align="center">

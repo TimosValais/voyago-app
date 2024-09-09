@@ -13,6 +13,7 @@ const AppTextField = ({
   margin = "normal",
   required = true,
   fullWidth = true,
+  disabled = false,
 }) => {
   return (
     <TextField
@@ -27,6 +28,7 @@ const AppTextField = ({
       autoFocus={autoFocus}
       value={value}
       onChange={onChange}
+      disabled={disabled}
     />
   );
 };

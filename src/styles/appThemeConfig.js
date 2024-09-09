@@ -1,4 +1,4 @@
-import appPalette from "./appPallete.js";
+import appPalette from "./appPalette.js";
 import { createTheme } from "@mui/material/styles";
 
 const lightThemeConfig = createTheme({
@@ -18,29 +18,59 @@ const lightThemeConfig = createTheme({
       default: appPalette.light.background.default,
       paper: appPalette.light.background.paper,
     },
+    status: {
+      canceled: appPalette.light.statusColors.canceled,
+      pending: appPalette.light.statusColors.pending,
+      started: appPalette.light.statusColors.started,
+      completed: appPalette.light.statusColors.completed,
+      ongoing: appPalette.light.statusColors.ongoing,
+    },
+    taskType: {
+      generalBooking: appPalette.light.taskTypeColors.generalBooking,
+      hotelBooking: appPalette.light.taskTypeColors.hotelBooking,
+      ticketBooking: appPalette.light.taskTypeColors.ticketBooking,
+      planning: appPalette.light.taskTypeColors.planning,
+      other: appPalette.light.taskTypeColors.other,
+    },
+    role: {
+      member: appPalette.light.roleColors.member,
+      manager: appPalette.light.roleColors.manager,
+      admin: appPalette.light.roleColors.admin,
+    },
+    buttons: {
+      accept: appPalette.light.buttonColors.accept,
+      danger: appPalette.light.buttonColors.danger,
+    },
+    buttonsText: {
+      accept: appPalette.light.buttonTextColors.accept,
+      danger: appPalette.light.buttonTextColors.danger,
+    },
+    border: {
+      initial: appPalette.light.primary.main,
+    },
   },
   components: {
     MuiTextField: {
       styleOverrides: {
         root: {
           "& .MuiInputLabel-root": {
-            color: appPalette.light.textPrimary, // Initial color for placeholder
+            color: appPalette.light.textPrimary,
           },
           "&:hover .MuiInputLabel-root": {
-            color: appPalette.light.textSecondary, // Initial color for hover placeholder
+            color: appPalette.light.textSecondary,
           },
           "& .MuiInputLabel-root.MuiInputLabel-shrink": {
-            color: appPalette.light.textSecondary, // Color for shrink label
+            color: appPalette.light.textSecondary,
           },
           "& .MuiOutlinedInput-root": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: appPalette.light.border.initial, // Initial color for border
+              borderColor: appPalette.light.border.initial,
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: appPalette.light.border.hover, // Color for border on hover
+              borderColor: appPalette.light.border.hover,
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: appPalette.light.border.focus, // Color for border on focus
+              borderColor: appPalette.light.border.focus,
             },
           },
         },
@@ -76,29 +106,59 @@ const darkThemeConfig = createTheme({
       default: appPalette.dark.background.default,
       paper: appPalette.dark.background.paper,
     },
+    status: {
+      canceled: appPalette.dark.statusColors.canceled,
+      pending: appPalette.dark.statusColors.pending,
+      started: appPalette.dark.statusColors.started,
+      completed: appPalette.dark.statusColors.completed,
+      ongoing: appPalette.dark.statusColors.ongoing,
+    },
+    taskType: {
+      generalBooking: appPalette.dark.taskTypeColors.generalBooking,
+      hotelBooking: appPalette.dark.taskTypeColors.hotelBooking,
+      ticketBooking: appPalette.dark.taskTypeColors.ticketBooking,
+      planning: appPalette.dark.taskTypeColors.planning,
+      other: appPalette.dark.taskTypeColors.other,
+    },
+    role: {
+      member: appPalette.dark.roleColors.member,
+      manager: appPalette.dark.roleColors.manager,
+      admin: appPalette.dark.roleColors.admin,
+    },
+    buttons: {
+      accept: appPalette.dark.buttonColors.accept,
+      danger: appPalette.dark.buttonColors.danger,
+    },
+    buttonsText: {
+      accept: appPalette.dark.buttonTextColors.accept,
+      danger: appPalette.dark.buttonTextColors.danger,
+    },
+    border: {
+      initial: appPalette.dark.primary.main,
+    },
   },
   components: {
     MuiTextField: {
       styleOverrides: {
         root: {
           "& .MuiInputLabel-root": {
-            color: appPalette.dark.textPrimary, // Initial color for placeholder
+            color: appPalette.dark.textPrimary,
           },
           "&:hover .MuiInputLabel-root": {
-            color: appPalette.dark.textSecondary, // Initial color for hover placeholder
+            color: appPalette.dark.textSecondary,
           },
           "& .MuiInputLabel-root.MuiInputLabel-shrink": {
-            color: appPalette.dark.textSecondary, // Color for shrink label
+            color: appPalette.dark.textSecondary,
           },
           "& .MuiOutlinedInput-root": {
             "& .MuiOutlinedInput-notchedOutline": {
-              borderColor: appPalette.dark.border.initial, // Initial color for border
+              borderColor: appPalette.dark.border.initial,
             },
             "&:hover .MuiOutlinedInput-notchedOutline": {
-              borderColor: appPalette.dark.border.hover, // Color for border on hover
+              borderColor: appPalette.dark.border.hover,
             },
             "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-              borderColor: appPalette.dark.border.focus, // Color for border on focus
+              borderColor: appPalette.dark.border.focus,
             },
           },
         },

@@ -1,16 +1,26 @@
 import React, { useState } from "react";
 import { Box, Typography, Link, Paper } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AppButton from "../components/AppButton";
 import AppTextField from "../components/AppTextField";
+import { loginUser } from "../api/authService";
 
-const Login = ({ onLogin, authError }) => {
+const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [authError, setAuthError] = useState(null);
+  const navigate = useNavigate();
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
+    console.log("sending request");
     event.preventDefault();
-    onLogin(username, password);
+    try {
+      const { token } = await loginUser(username, password);
+      localStorage.setItem("authToken", token);
+      navigate("/");
+    } catch (error) {
+      setAuthError(error.response?.data?.message || "Login failed");
+    }
   };
 
   return (
@@ -57,8 +67,9 @@ const Login = ({ onLogin, authError }) => {
             type="submit"
             text="Login"
             variant="contained"
-            color="primary"
+            color="buttons.accept"
             sx={{ mt: 3, mb: 2, width: "100%" }}
+            typographySx={{ color: "buttonsText.accept" }}
             onClick={handleLogin}
           />
           <Typography variant="body2" align="center">
